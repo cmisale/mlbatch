@@ -231,6 +231,7 @@ data:
             args:
             - "--zap-log-level=2"
             - "--gang-scheduler-name=scheduler-plugins-scheduler"
+            - "--pytorch-init-container-image=quay.io/jitesoft/alpine:3.10"
             resources:
               requests:
                 cpu: 100m

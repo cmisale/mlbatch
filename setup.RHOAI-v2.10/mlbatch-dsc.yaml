@@ -23,7 +23,7 @@ spec:
     modelmeshserving:
       managementState: Removed
     ray:
-      managementState: Managed
+      managementState: Removed
     trainingoperator:
       managementState: Managed
     trustyai:

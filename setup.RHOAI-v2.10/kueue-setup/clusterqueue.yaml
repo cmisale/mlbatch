@@ -1,0 +1,33 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ClusterQueue
+metadata:
+  name: openshiftai-cluster-queue
+spec:
+  namespaceSelector: {}
+  cohort: default-cohort
+  preemption:
+    withinClusterQueue: LowerOrNewerEqualPriority
+    reclaimWithinCohort: Any
+    borrowWithinCohort:
+      policy: Never
+  resourceGroups:
+  - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "rdma/roce_gdr"]
+    flavors:
+    - name: default-flavor
+      resources:
+      - name: "cpu"
+        nominalQuota: 780500m
+        # borrowingLimit: 0
+        # lendingLimit: 0
+      - name: "memory"
+        nominalQuota: 8000Gi
+        # borrowingLimit: 0
+        # lendingLimit: 0
+      - name: "nvidia.com/gpu"
+        nominalQuota: 16
+        # borrowingLimit: 0
+        lendingLimit: 16
+      - name: "rdma/roce_gdr"
+        nominalQuota: 32
+        # borrowingLimit: 0
+        lendingLimit: 32
